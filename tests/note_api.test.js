@@ -6,16 +6,16 @@ const api = supertest(app)
 const helper = require('../tests/test_helper')
 const Note = require('../models/note')
 
-beforeEach(async () => {
-  await mongoose.connect(config.MONGODB_URI)
-  await Note.deleteMany({})
-  let noteObject = new Note(helper.initialNotes[0])
-  await noteObject.save()
-  noteObject = new Note(helper.initialNotes[1])
-  await noteObject.save()
-}, 1000000)
-
 describe('testing notes', () => {
+  beforeEach(async () => {
+    await mongoose.connect(config.MONGODB_URI)
+    await Note.deleteMany({})
+    console.log('cleared')
+    let noteObject = new Note(helper.initialNotes[0])
+    await noteObject.save()
+    noteObject = new Note(helper.initialNotes[1])
+    await noteObject.save()
+  }, 1000000)
   test('notes are returned as json', async () => {
     await api
       .get('/api/notes')
@@ -85,14 +85,14 @@ describe('testing notes', () => {
   test('a note can be deleted', async () => {
     const notesAtStart = await helper.notesInDb()
     const noteToDelete = notesAtStart[0]
-    await api.delete(`/api/notes/${noteToDelete.id}`)
+    console.log('note to delete', noteToDelete)
+    await api.delete(`/api/notes/${noteToDelete.id}`).expect(204)
     const notesAtEnd = await helper.notesInDb()
     expect(notesAtEnd).toHaveLength(helper.initialNotes.length - 1)
     const contents = notesAtEnd.map((note) => note.content)
     expect(contents).not.toContain(noteToDelete.content)
   })
-})
-
-afterAll(() => {
-  mongoose.connection.close()
+  afterAll(() => {
+    mongoose.connection.close()
+  })
 })
