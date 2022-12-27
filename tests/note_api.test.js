@@ -10,11 +10,7 @@ describe('testing notes', () => {
   beforeEach(async () => {
     await mongoose.connect(config.MONGODB_URI)
     await Note.deleteMany({})
-    console.log('cleared')
-    let noteObject = new Note(helper.initialNotes[0])
-    await noteObject.save()
-    noteObject = new Note(helper.initialNotes[1])
-    await noteObject.save()
+    await Note.insertMany(helper.initialNotes)
   }, 1000000)
   test('notes are returned as json', async () => {
     await api
