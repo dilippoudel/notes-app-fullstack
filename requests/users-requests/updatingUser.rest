@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/users/639b59d3cc2fdc59ff2cc049
+content-type: application/json
+
+{
+    "name": "sample prasad",
+    "important": true
+}
