@@ -1,9 +1,9 @@
 POST http://localhost:3001/api/notes/
 content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvbDEyNSIsImlkIjoiNjNhYjRiODAxNDlkN2E2NWJhNmUzYjY1IiwiaWF0IjoxNjcyMjIyMjQ0fQ.ZNzqMfguFJZqUtHU_esuTY55chFvIyKFhqi32g336mE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWkxMjMiLCJpZCI6IjYzYjViZGQ2YmE3Yjg3NGEzYzRhODc1MCIsImlhdCI6MTY3Mjg1NjU0OSwiZXhwIjoxNjcyODYwMTQ5fQ.f5LiNmsW9ql5jHhJ4kwebcL-VxvaNAs9mXN-_qBUty4
 
 {
-    "content": "Learning authentication and authorization",
+    "content": "React authentication and authorization",
     "important": true,
-    "userId": "63ab4b80149d7a65ba6e3b65"
+    "userId": "63b4297e1ccb3332e4b8362d"
 }
