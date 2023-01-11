@@ -1,9 +1,9 @@
-POST http://localhost:3001/api/users/
+POST https://broken-lake-4532.fly.dev/api/users/
 content-type: application/json
 
 {
-    "username": "sami123",
+    "username": "dilip123",
     "name": "Samita",
-    "password": "sami123"
+    "password": "dilip123"
 
 }

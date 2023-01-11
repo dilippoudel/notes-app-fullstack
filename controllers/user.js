@@ -1,13 +1,16 @@
 const usersRouter = require('express').Router()
-const User = require('../models/user')
+const NoteUser = require('../models/user')
 const bcrypt = require('bcrypt')
 
 usersRouter.get('/', async (req, res) => {
-  const users = await User.find({}).populate('notes', { content: 1, date: 1 })
+  const users = await NoteUser.find({}).populate('notes', {
+    content: 1,
+    date: 1,
+  })
   res.json(users)
 })
 usersRouter.get(':id', async (req, res) => {
-  const user = await User.findById(req.params.id)
+  const user = await NoteUser.findById(req.params.id)
   if (user) {
     res.json(user)
   } else {
@@ -20,14 +23,14 @@ usersRouter.delete(':/id', async (req, res) => {
 })
 usersRouter.post('/', async (request, response) => {
   const { username, name, password } = request.body
-  const existingUser = await User.findOne({ username })
+  const existingUser = await NoteUser.findOne({ username })
   if (existingUser) {
     return response.status(400).json({ error: 'username must be unique' })
   }
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(password, saltRounds)
 
-  const user = new User({
+  const user = new NoteUser({
     username,
     name,
     passwordHash,
