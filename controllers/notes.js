@@ -46,13 +46,12 @@ notesRouter.post(
     user.notes = user.notes.concat(savedNote._id)
     await user.save()
     response.status(201).json(savedNote)
-  },
+  }
 )
 
 // updating note // toogling importance of note
 notesRouter.put('/:id', async (request, response) => {
   const body = request.body
-  console.log('body is ', body)
   const note = {
     content: body.content,
     important: body.important,
